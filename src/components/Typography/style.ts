@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const margin = `margin: 0`;
-
 const variants = {
   TitleLarge: `
     font-style: normal;
@@ -35,8 +33,6 @@ const variants = {
 
 const ElementStyled = (props: { html: string; css: string }) => {
   const { html, css } = props;
-  console.log(html);
-  console.log(css);
 
   const component = styled(html as "h2" | "h4" | "p" | "span")`
     font-family: "Open Sans";

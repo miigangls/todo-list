@@ -6,7 +6,7 @@ import { Wrapper } from "./style";
 const Auth = () => {
   return (
     <Wrapper>
-      <Typography key={1} typeElement={"TitleLarge"} htmlElement="h4" propsElement={{ children: "Inicia sesión en nuestra plataforma" }} />
+      <Typography type-element={"TitleLarge"} >Inicia sesión en nuestra plataforma</Typography>
       <Input label="Email" id="email" type="email" placeholder="email address" />
       <Input label="Contraseña" id="password" type={"password"} placeholder="Contraseña" />
       <Button
