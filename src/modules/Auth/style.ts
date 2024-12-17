@@ -38,6 +38,18 @@ export const FieldError = styled.span`
   margin-top: 4px;
 `;
 
+export const FooterLink = styled.div`
+  font-size: 0.875rem;
+  a {
+    color: #0d9488;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const Title = styled.h1`
   padding: 48px;
   display: flex;

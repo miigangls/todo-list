@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, type FormikHelpers } from "formik";
 import { FirebaseError } from "firebase/app";
 
@@ -8,7 +8,7 @@ import Input from "../../components/Input";
 import Typography from "../../components/Typography";
 import { login } from "../../firebase";
 import { validateEmail } from "../../utils";
-import { Wrapper, Form, ErrorMessage, FieldError } from "./style";
+import { Wrapper, Form, ErrorMessage, FieldError, FooterLink } from "./style";
 
 type LoginValues = {
   email: string;
@@ -129,6 +129,10 @@ const Auth = () => {
             >
               Aceptar
             </Button>
+
+            <FooterLink>
+              ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
+            </FooterLink>
           </Form>
         )}
       </Formik>

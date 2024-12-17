@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import { Auth } from "./modules/Auth";
+import { Register } from "./modules/Register";
 
 
 type PrivateRouteProps = { children: JSX.Element } & RouterRouteProps;
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/login" element={<Auth />} />
+      <Route path="/register" element={<Register />} />
 
       <Route
         path="/"
