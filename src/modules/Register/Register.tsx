@@ -9,6 +9,7 @@ import Typography from "../../components/Typography";
 import { register } from "../../firebase";
 import { validateEmail } from "../../utils";
 import {
+  Page,
   Wrapper,
   Form,
   ErrorMessage,
@@ -74,6 +75,7 @@ const Register = () => {
   }
 
   return (
+    <Page>
     <Wrapper>
       <Typography type-element={"TitleLarge"}>Crear cuenta</Typography>
 
@@ -163,6 +165,7 @@ const Register = () => {
         )}
       </Formik>
     </Wrapper>
+    </Page>
   );
 };
 

@@ -7,6 +7,11 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 480px) {
+    padding: 16px 12px;
+    gap: 16px;
+  }
 `;
 
 export const HeaderBar = styled.header`

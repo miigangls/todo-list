@@ -38,7 +38,7 @@ const ElementStyled = (props: { html: string; css: string }) => {
     font-family: "Open Sans";
     font: inherit;
     width: fit-content;
-    color: ${({ theme }) => `#262626`};
+    color: #262626;
     ${css};
   `;
 

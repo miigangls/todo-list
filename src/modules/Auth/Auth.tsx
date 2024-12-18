@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, type Location } from "react-router-dom";
 import { Formik, type FormikHelpers } from "formik";
 import { FirebaseError } from "firebase/app";
 
@@ -8,7 +8,7 @@ import Input from "../../components/Input";
 import Typography from "../../components/Typography";
 import { login } from "../../firebase";
 import { validateEmail } from "../../utils";
-import { Wrapper, Form, ErrorMessage, FieldError, FooterLink } from "./style";
+import { Page, Wrapper, Form, ErrorMessage, FieldError, FooterLink } from "./style";
 
 type LoginValues = {
   email: string;
@@ -42,8 +42,11 @@ function authErrorMessage(code: string): string {
   }
 }
 
+type LocationState = { from?: Location } | null;
+
 const Auth = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [serverError, setServerError] = useState<string>("");
 
   async function handleSubmit(
@@ -53,7 +56,9 @@ const Auth = () => {
     setServerError("");
     try {
       await login(values.email, values.password);
-      navigate("/", { replace: true });
+      const state = location.state as LocationState;
+      const target = state?.from?.pathname ?? "/";
+      navigate(target, { replace: true });
     } catch (e) {
       const code = e instanceof FirebaseError ? e.code : "";
       setServerError(authErrorMessage(code));
@@ -63,6 +68,7 @@ const Auth = () => {
   }
 
   return (
+    <Page>
     <Wrapper>
       <Typography type-element={"TitleLarge"}>
         Inicia sesión en nuestra plataforma
@@ -137,6 +143,7 @@ const Auth = () => {
         )}
       </Formik>
     </Wrapper>
+    </Page>
   );
 };
 
