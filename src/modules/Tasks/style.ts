@@ -1,0 +1,109 @@
+import styled from "styled-components";
+
+export const Container = styled.main`
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+export const HeaderBar = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+`;
+
+export const HeaderTitle = styled.h1`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+`;
+
+export const HeaderUser = styled.span`
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-right: auto;
+  margin-left: 12px;
+`;
+
+export const IconButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+export const List = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Item = styled.li<{ $completed: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  ${({ $completed }) =>
+    $completed &&
+    `
+      opacity: 0.6;
+      text-decoration: line-through;
+  `}
+`;
+
+export const Checkbox = styled.input.attrs({ type: "checkbox" })`
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+`;
+
+export const ItemName = styled.span`
+  flex: 1;
+  font-size: 0.95rem;
+  color: #111827;
+  word-break: break-word;
+`;
+
+export const EmptyState = styled.div`
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+  padding: 32px 16px;
+`;
+
+export const ErrorBox = styled.div`
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+`;
