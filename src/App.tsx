@@ -1,27 +1,49 @@
-import {
-  Routes,
-  Route,
-  Navigate,
-  RouteProps as RouterRouteProps,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import { Auth } from "./modules/Auth";
 import { Register } from "./modules/Register";
+import useAuthenticated from "./hooks/useAuthenticated";
 
+type GuardProps = { children: JSX.Element };
 
-type PrivateRouteProps = { children: JSX.Element } & RouterRouteProps;
+function PrivateRoute({ children }: GuardProps) {
+  const { userId, loading } = useAuthenticated();
+  const location = useLocation();
 
-function PrivateRoute({ children }: PrivateRouteProps) {
-  const isAuthenticated = true; // Cambia esto por tu lógica real de autenticación
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  if (loading) return null;
+  if (!userId) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+  return children;
 }
 
+function PublicOnlyRoute({ children }: GuardProps) {
+  const { userId, loading } = useAuthenticated();
+
+  if (loading) return null;
+  if (userId) return <Navigate to="/" replace />;
+  return children;
+}
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Auth />} />
-      <Route path="/register" element={<Register />} />
+      <Route
+        path="/login"
+        element={
+          <PublicOnlyRoute>
+            <Auth />
+          </PublicOnlyRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <PublicOnlyRoute>
+            <Register />
+          </PublicOnlyRoute>
+        }
+      />
 
       <Route
         path="/"
@@ -31,9 +53,10 @@ const App = () => {
           </PrivateRoute>
         }
       />
-    </Routes>
 
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 };
 
-export default App
+export default App;
