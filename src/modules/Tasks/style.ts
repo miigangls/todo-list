@@ -95,6 +95,22 @@ export const ItemName = styled.span`
   font-size: 0.95rem;
   color: #111827;
   word-break: break-word;
+  cursor: text;
+`;
+
+export const EditInput = styled.input`
+  flex: 1;
+  font-size: 0.95rem;
+  padding: 6px 8px;
+  border: 1px solid #14b8a6;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+
+  &:disabled {
+    background: #f9fafb;
+    cursor: not-allowed;
+  }
 `;
 
 export const EmptyState = styled.div`

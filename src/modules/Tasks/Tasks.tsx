@@ -12,7 +12,7 @@ import { Container } from "./style";
 
 const Tasks = () => {
   const { user, userId } = useAuthenticated();
-  const { tasks, loading, error, addTask, toggleTask, deleteTask } =
+  const { tasks, loading, error, addTask, toggleTask, deleteTask, renameTask } =
     useTasks(userId);
 
   const [filter, setFilter] = useState<FilterValue>("all");
@@ -63,6 +63,7 @@ const Tasks = () => {
           tasks={visibleTasks}
           onToggle={toggleTask}
           onDelete={deleteTask}
+          onRename={renameTask}
         />
       )}
     </Container>
