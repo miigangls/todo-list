@@ -148,6 +148,44 @@ export const AddButton = styled.button`
   }
 `;
 
+export const FiltersBar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+`;
+
+export const FilterGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const FilterLabel = styled.label`
+  font-size: 0.8rem;
+  color: #6b7280;
+`;
+
+export const Select = styled.select`
+  padding: 6px 10px;
+  font-size: 0.875rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: #14b8a6;
+  }
+`;
+
+export const Counter = styled.span`
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #6b7280;
+`;
+
 export const ErrorBox = styled.div`
   color: #b91c1c;
   background: #fee2e2;
