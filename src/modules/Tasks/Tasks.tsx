@@ -1,12 +1,14 @@
 import { useMemo, useState } from "react";
 
+import Message from "../../components/Message";
+import { TaskListSkeleton } from "../../components/Skeleton";
 import useAuthenticated from "../../hooks/useAuthenticated";
 import useTasks from "../../hooks/useTasks";
 import AddTask from "./AddTask";
 import Filters, { type FilterValue, type SortValue } from "./Filters";
 import Header from "./Header";
 import TaskList from "./TaskList";
-import { Container, EmptyState, ErrorBox } from "./style";
+import { Container } from "./style";
 
 const Tasks = () => {
   const { user, userId } = useAuthenticated();
@@ -48,10 +50,14 @@ const Tasks = () => {
         visible={visibleTasks.length}
       />
 
-      {error && <ErrorBox>Error al cargar tareas: {error.message}</ErrorBox>}
+      {error && (
+        <Message variant="error">
+          Error al cargar tareas: {error.message}
+        </Message>
+      )}
 
       {loading ? (
-        <EmptyState>Cargando tareas…</EmptyState>
+        <TaskListSkeleton />
       ) : (
         <TaskList
           tasks={visibleTasks}
