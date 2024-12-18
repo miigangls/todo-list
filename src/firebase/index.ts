@@ -4,3 +4,11 @@ export type { FirebaseContextValue } from "./context";
 export { COOKIE_NAME, COOKIE_OPTIONS } from "./cookies";
 export type { CookieOptions } from "./cookies";
 export { register, login, closeSession } from "./fetch";
+export {
+  subscribeToTasks,
+  addTask,
+  deleteTask,
+  setTaskCompleted,
+  renameTask,
+} from "./tasks";
+export type { Task } from "./tasks";
