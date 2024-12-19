@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import { Auth } from "./modules/Auth";
+import { NotFound } from "./modules/NotFound";
 import { Register } from "./modules/Register";
 import { Tasks } from "./modules/Tasks";
 import useAuthenticated from "./hooks/useAuthenticated";
@@ -55,7 +56,7 @@ const App = () => {
         }
       />
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
