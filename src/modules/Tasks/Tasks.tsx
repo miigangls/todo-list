@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import Message from "../../components/Message";
 import { TaskListSkeleton } from "../../components/Skeleton";
+import { useToast } from "../../components/Toast";
 import useAuthenticated from "../../hooks/useAuthenticated";
 import useTasks from "../../hooks/useTasks";
 import AddTask from "./AddTask";
@@ -15,6 +16,7 @@ const Tasks = () => {
   const { user, userId } = useAuthenticated();
   const { tasks, loading, error, addTask, toggleTask, deleteTask, renameTask } =
     useTasks(userId);
+  const toast = useToast();
 
   const [filter, setFilter] = useState<FilterValue>("all");
   const [sort, setSort] = useState<SortValue>("newest");
@@ -39,6 +41,46 @@ const Tasks = () => {
     );
   }, [tasks, filter, sort]);
 
+  const handleAdd = useCallback(
+    async (name: string) => {
+      try {
+        await addTask(name);
+        toast.success("Tarea creada");
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : "No se pudo crear la tarea";
+        toast.error(msg);
+        throw e;
+      }
+    },
+    [addTask, toast],
+  );
+
+  const handleToggle = useCallback(
+    async (id: string, completed: boolean) => {
+      try {
+        await toggleTask(id, completed);
+      } catch {
+        toast.error("No se pudo actualizar el estado de la tarea");
+      }
+    },
+    [toggleTask, toast],
+  );
+
+  const handleRename = useCallback(
+    async (id: string, name: string) => {
+      try {
+        await renameTask(id, name);
+        toast.success("Tarea actualizada");
+      } catch (e) {
+        const msg =
+          e instanceof Error ? e.message : "No se pudo renombrar la tarea";
+        toast.error(msg);
+        throw e;
+      }
+    },
+    [renameTask, toast],
+  );
+
   function requestDelete(id: string) {
     const task = tasks.find((t) => t.id === id);
     if (!task) return;
@@ -50,7 +92,10 @@ const Tasks = () => {
     setDeleting(true);
     try {
       await deleteTask(pendingDelete.id);
+      toast.success("Tarea eliminada");
       setPendingDelete(null);
+    } catch {
+      toast.error("No se pudo eliminar la tarea");
     } finally {
       setDeleting(false);
     }
@@ -60,7 +105,7 @@ const Tasks = () => {
     <Container>
       <Header displayName={user?.displayName} />
 
-      <AddTask onAdd={addTask} disabled={!userId} />
+      <AddTask onAdd={handleAdd} disabled={!userId} />
 
       <Filters
         filter={filter}
@@ -84,9 +129,9 @@ const Tasks = () => {
       ) : (
         <TaskList
           tasks={visibleTasks}
-          onToggle={toggleTask}
+          onToggle={handleToggle}
           onDelete={requestDelete}
-          onRename={renameTask}
+          onRename={handleRename}
         />
       )}
 

@@ -6,6 +6,7 @@ import App from './App.jsx';
 import { ThemeProvider } from 'styled-components';
 import { theme } from "./theme/ThemeUI";
 import { BrowserRouter } from "react-router-dom";
+import { ToastProvider } from "./components/Toast";
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
@@ -14,7 +15,9 @@ if (rootElement) {
       <BrowserRouter>
         <ChakraProvider value={defaultSystem}>
           <ThemeProvider theme={theme}>
-            <App />
+            <ToastProvider>
+              <App />
+            </ToastProvider>
           </ThemeProvider>
         </ChakraProvider>
       </BrowserRouter>
