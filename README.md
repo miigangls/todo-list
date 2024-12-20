@@ -68,15 +68,34 @@ Todas con prefijo `VITE_` (ver `.env.example`):
 
 `config.ts` valida que todas estén presentes y falla rápido si falta alguna.
 
-## Reglas de Firestore
+## Reglas e índices de Firestore
 
-El archivo [`firestore.rules`](./firestore.rules) restringe `tasks-list` a
-documentos del propio usuario (`request.auth.uid == resource.data.userId`)
-y valida tipos/longitudes en `create`. Subir con:
+- [`firestore.rules`](./firestore.rules) restringe `tasks-list` a documentos
+  del propio usuario (`request.auth.uid == resource.data.userId`) y valida
+  tipos/longitudes en `create`.
+- [`firestore.indexes.json`](./firestore.indexes.json) declara el índice
+  compuesto `userId ASC + createdAt DESC` que requiere la query de
+  `subscribeToTasks`.
 
 ```bash
-firebase deploy --only firestore:rules
+yarn deploy:rules
 ```
+
+## Despliegue
+
+Configurado en [`firebase.json`](./firebase.json) y
+[`.firebaserc`](./.firebaserc). Hosting sirve `dist/` con SPA fallback a
+`index.html` y cabeceras de cache inmutables para assets versionados.
+
+```bash
+# Solo hosting
+yarn deploy:hosting
+
+# Hosting + reglas + índices
+yarn deploy
+```
+
+Requiere `firebase login` previa.
 
 ## Diferencias clave vs v1.0.0
 
