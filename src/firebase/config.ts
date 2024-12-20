@@ -1,4 +1,8 @@
 import { initializeApp, type FirebaseApp } from "firebase/app";
+import {
+  initializeAppCheck,
+  ReCaptchaV3Provider,
+} from "firebase/app-check";
 import { getAuth, type Auth } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 import { getStorage, type FirebaseStorage } from "firebase/storage";
@@ -24,6 +28,24 @@ if (missing.length) {
 }
 
 export const fire: FirebaseApp = initializeApp(firebaseConfig);
+
+// App Check protege la API key del cliente bloqueando llamadas que no
+// vengan de una página propia (verificadas con reCAPTCHA v3). Se activa
+// solo si VITE_APPCHECK_RECAPTCHA_SITE_KEY está definida; útil para no
+// requerirlo en local. En desarrollo se puede usar el debug token de
+// Firebase exportando self.FIREBASE_APPCHECK_DEBUG_TOKEN.
+const appCheckSiteKey = import.meta.env.VITE_APPCHECK_RECAPTCHA_SITE_KEY;
+if (appCheckSiteKey) {
+  if (import.meta.env.DEV) {
+    // @ts-expect-error — propiedad inyectada en window por Firebase para debug.
+    self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+  }
+  initializeAppCheck(fire, {
+    provider: new ReCaptchaV3Provider(appCheckSiteKey),
+    isTokenAutoRefreshEnabled: true,
+  });
+}
+
 export const auth: Auth = getAuth(fire);
 export const db: Firestore = getFirestore(fire);
 export const storage: FirebaseStorage = getStorage(fire);

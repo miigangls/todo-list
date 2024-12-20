@@ -65,6 +65,9 @@ Todas con prefijo `VITE_` (ver `.env.example`):
 - `VITE_FIREBASE_MESSAGING_SENDER_ID`
 - `VITE_FIREBASE_APP_ID`
 - `VITE_FIREBASE_MEASUREMENT_ID`
+- `VITE_APPCHECK_RECAPTCHA_SITE_KEY` *(opcional)* — site key de reCAPTCHA v3.
+  Si está definida, el cliente inicializa Firebase App Check; en `dev` se
+  habilita el debug token de Firebase para evitar bloqueos locales.
 
 `config.ts` valida que todas estén presentes y falla rápido si falta alguna.
 
