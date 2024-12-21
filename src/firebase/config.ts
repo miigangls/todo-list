@@ -1,8 +1,5 @@
 import { initializeApp, type FirebaseApp } from "firebase/app";
-import {
-  initializeAppCheck,
-  ReCaptchaV3Provider,
-} from "firebase/app-check";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import { getAuth, type Auth } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 import { getStorage, type FirebaseStorage } from "firebase/storage";

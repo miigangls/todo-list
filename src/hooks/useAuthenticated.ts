@@ -10,7 +10,9 @@ export type AuthState = {
 
 function useAuthenticated(): AuthState {
   const [user, setUser] = useState<User | null>(() => auth.currentUser);
-  const [loading, setLoading] = useState<boolean>(() => auth.currentUser === null);
+  const [loading, setLoading] = useState<boolean>(
+    () => auth.currentUser === null,
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (next) => {

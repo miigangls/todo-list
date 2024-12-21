@@ -76,95 +76,95 @@ const Register = () => {
 
   return (
     <Page>
-    <Wrapper>
-      <Typography type-element={"TitleLarge"}>Crear cuenta</Typography>
+      <Wrapper>
+        <Typography type-element={"TitleLarge"}>Crear cuenta</Typography>
 
-      <Formik
-        initialValues={initialValues}
-        validate={validate}
-        onSubmit={handleSubmit}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-        }) => (
-          <Form onSubmit={handleSubmit} noValidate>
-            <div>
-              <Input
-                label="Nombre"
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Nombre"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
+        <Formik
+          initialValues={initialValues}
+          validate={validate}
+          onSubmit={handleSubmit}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <Form onSubmit={handleSubmit} noValidate>
+              <div>
+                <Input
+                  label="Nombre"
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Nombre"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                />
+                {touched.name && errors.name && (
+                  <FieldError>{errors.name}</FieldError>
+                )}
+              </div>
+
+              <div>
+                <Input
+                  label="Email"
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="email address"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                />
+                {touched.email && errors.email && (
+                  <FieldError>{errors.email}</FieldError>
+                )}
+              </div>
+
+              <div>
+                <Input
+                  label="Contraseña"
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Contraseña"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                />
+                {touched.password && errors.password && (
+                  <FieldError>{errors.password}</FieldError>
+                )}
+              </div>
+
+              {serverError && <ErrorMessage>{serverError}</ErrorMessage>}
+
+              <Button
+                borderRadius={0}
+                type="submit"
+                variant="solid"
+                colorScheme="teal"
+                width="full"
                 disabled={isSubmitting}
-              />
-              {touched.name && errors.name && (
-                <FieldError>{errors.name}</FieldError>
-              )}
-            </div>
+              >
+                Crear cuenta
+              </Button>
 
-            <div>
-              <Input
-                label="Email"
-                id="email"
-                name="email"
-                type="email"
-                placeholder="email address"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                disabled={isSubmitting}
-              />
-              {touched.email && errors.email && (
-                <FieldError>{errors.email}</FieldError>
-              )}
-            </div>
-
-            <div>
-              <Input
-                label="Contraseña"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Contraseña"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                disabled={isSubmitting}
-              />
-              {touched.password && errors.password && (
-                <FieldError>{errors.password}</FieldError>
-              )}
-            </div>
-
-            {serverError && <ErrorMessage>{serverError}</ErrorMessage>}
-
-            <Button
-              borderRadius={0}
-              type="submit"
-              variant="solid"
-              colorScheme="teal"
-              width="full"
-              disabled={isSubmitting}
-            >
-              Crear cuenta
-            </Button>
-
-            <FooterLink>
-              ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
-            </FooterLink>
-          </Form>
-        )}
-      </Formik>
-    </Wrapper>
+              <FooterLink>
+                ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+              </FooterLink>
+            </Form>
+          )}
+        </Formik>
+      </Wrapper>
     </Page>
   );
 };

@@ -133,7 +133,9 @@ export const AddInput = styled.input`
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 
   &:focus {
     border-color: #14b8a6;

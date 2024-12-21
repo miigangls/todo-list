@@ -13,12 +13,7 @@ export const SkeletonBlock = styled.div<{
   width: ${({ $width }) => $width ?? "100%"};
   height: ${({ $height }) => $height ?? "16px"};
   border-radius: ${({ $radius }) => $radius ?? "6px"};
-  background: linear-gradient(
-    90deg,
-    #f3f4f6 0px,
-    #e5e7eb 200px,
-    #f3f4f6 400px
-  );
+  background: linear-gradient(90deg, #f3f4f6 0px, #e5e7eb 200px, #f3f4f6 400px);
   background-size: 800px 100%;
   animation: ${shimmer} 1.4s ease-in-out infinite;
 `;

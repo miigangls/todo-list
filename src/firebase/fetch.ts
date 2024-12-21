@@ -12,7 +12,11 @@ export async function register(
   email: string,
   password: string,
 ): Promise<UserCredential> {
-  const credential = await createUserWithEmailAndPassword(auth, email, password);
+  const credential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
   await updateProfile(credential.user, { displayName: name });
   return credential;
 }

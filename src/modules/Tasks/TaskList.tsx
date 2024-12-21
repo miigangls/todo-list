@@ -11,7 +11,9 @@ type TaskListProps = {
 
 const TaskList = ({ tasks, onToggle, onDelete, onRename }: TaskListProps) => {
   if (tasks.length === 0) {
-    return <EmptyState>No tienes tareas todavía. ¡Agrega la primera!</EmptyState>;
+    return (
+      <EmptyState>No tienes tareas todavía. ¡Agrega la primera!</EmptyState>
+    );
   }
 
   return (

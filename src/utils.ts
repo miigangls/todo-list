@@ -9,7 +9,10 @@ export function validateEmail(value: string): ValidationResult {
   return { error: false };
 }
 
-export function filter<T extends { status: unknown }>(data: T[], value: string): T[] {
+export function filter<T extends { status: unknown }>(
+  data: T[],
+  value: string,
+): T[] {
   if (value !== "all" && value !== "") {
     return data.filter(({ status }) => String(status) === value);
   }

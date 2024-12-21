@@ -35,9 +35,7 @@ const Tasks = () => {
           );
 
     return [...filtered].sort((a, b) =>
-      sort === "newest"
-        ? b.createdAt - a.createdAt
-        : a.createdAt - b.createdAt,
+      sort === "newest" ? b.createdAt - a.createdAt : a.createdAt - b.createdAt,
     );
   }, [tasks, filter, sort]);
 
@@ -47,7 +45,8 @@ const Tasks = () => {
         await addTask(name);
         toast.success("Tarea creada");
       } catch (e) {
-        const msg = e instanceof Error ? e.message : "No se pudo crear la tarea";
+        const msg =
+          e instanceof Error ? e.message : "No se pudo crear la tarea";
         toast.error(msg);
         throw e;
       }

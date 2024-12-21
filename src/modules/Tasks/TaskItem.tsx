@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import type { Task } from "../../firebase";
-import {
-  Checkbox,
-  EditInput,
-  IconButton,
-  Item,
-  ItemName,
-} from "./style";
+import { Checkbox, EditInput, IconButton, Item, ItemName } from "./style";
 
 type TaskItemProps = {
   task: Task;

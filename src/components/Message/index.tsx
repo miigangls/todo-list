@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
-import {
-  AlertCircle,
-  CheckCircle2,
-  Info,
-  TriangleAlert,
-} from "lucide-react";
+import { AlertCircle, CheckCircle2, Info, TriangleAlert } from "lucide-react";
 import { MessageBox, type MessageVariant } from "./style";
 
 type MessageProps = {
@@ -27,7 +22,10 @@ export default function Message({
 }: MessageProps) {
   const Icon = ICONS[variant];
   return (
-    <MessageBox $variant={variant} role={variant === "error" ? "alert" : "status"}>
+    <MessageBox
+      $variant={variant}
+      role={variant === "error" ? "alert" : "status"}
+    >
       {showIcon && <Icon size={16} />}
       <span>{children}</span>
     </MessageBox>

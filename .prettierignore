@@ -1,0 +1,8 @@
+dist
+node_modules
+yarn.lock
+package-lock.json
+*.min.css
+*.min.js
+src/assets/css/fontawesome
+src/assets/css/skeleton

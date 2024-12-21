@@ -1,9 +1,16 @@
 import type { HTMLAttributes } from "react";
-import { variants, ElementStyled } from './style';
+import { variants, ElementStyled } from "./style";
 import "../../index.css";
 
-interface TypographyInterface extends HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement> {
-  "type-element": "TitleLarge" | "SubtitleLarge" | "SubtitleMedium" | "Body" | "Caption";
+interface TypographyInterface extends HTMLAttributes<
+  HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement
+> {
+  "type-element":
+    | "TitleLarge"
+    | "SubtitleLarge"
+    | "SubtitleMedium"
+    | "Body"
+    | "Caption";
 }
 
 const htmlElementType: Record<TypographyInterface["type-element"], string> = {
@@ -15,12 +22,14 @@ const htmlElementType: Record<TypographyInterface["type-element"], string> = {
 };
 
 const Typography = (props: TypographyInterface) => {
-  const variant = { html: htmlElementType[props["type-element"]], css: variants[props["type-element"]] };
+  const variant = {
+    html: htmlElementType[props["type-element"]],
+    css: variants[props["type-element"]],
+  };
 
   const ElementHtml = ElementStyled(variant);
 
   return <ElementHtml {...props} />;
 };
-
 
 export default Typography;
