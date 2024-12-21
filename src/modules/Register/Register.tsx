@@ -147,14 +147,7 @@ const Register = () => {
 
               {serverError && <ErrorMessage>{serverError}</ErrorMessage>}
 
-              <Button
-                borderRadius={0}
-                type="submit"
-                variant="solid"
-                colorScheme="teal"
-                width="full"
-                disabled={isSubmitting}
-              >
+              <Button type="submit" disabled={isSubmitting}>
                 Crear cuenta
               </Button>
 

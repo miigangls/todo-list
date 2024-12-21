@@ -1,15 +1,15 @@
-import { InputProps as ChakraInputProps } from "@chakra-ui/react";
+import type { InputHTMLAttributes } from "react";
 import { StyleInput, Label, FormItem } from "./style";
 
-interface InputProps extends ChakraInputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-export default function Input(props: InputProps) {
+export default function Input({ label, id, ...rest }: InputProps) {
   return (
     <FormItem>
-      <Label htmlFor={props.id}>{props.label}</Label>
-      <StyleInput {...{ ...props, id: props.id }} />
+      {label && <Label htmlFor={id}>{label}</Label>}
+      <StyleInput id={id} {...rest} />
     </FormItem>
   );
 }
