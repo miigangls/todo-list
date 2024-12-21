@@ -1,13 +1,7 @@
-import { ButtonProps as ChakraButtonProps } from "@chakra-ui/react";
+import type { ButtonProps as ChakraButtonProps } from "@chakra-ui/react";
 
 import { StyleButton } from './style';
 
-
-interface ButtonProps extends ChakraButtonProps {
-}
-
-export default function Button(props: ButtonProps) {
-  return (
-    <StyleButton {...props} />
-  )
+export default function Button(props: ChakraButtonProps) {
+  return <StyleButton {...props} />;
 }

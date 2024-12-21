@@ -12,7 +12,7 @@ export interface IDataSource {
   value: string;
   name?: string;
   label?: string;
-  children: any[];
+  children: unknown[];
   selectable?: boolean;
   disableCheckbox?: boolean;
 }

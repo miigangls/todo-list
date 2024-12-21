@@ -1,12 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { useCallback, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
   AlertCircle,
@@ -16,6 +8,7 @@ import {
   X,
 } from "lucide-react";
 import type { MessageVariant } from "../Message/style";
+import { ToastContext, type ToastContextValue } from "./context";
 import { ToastBody, ToastBox, ToastClose, ToastContainer } from "./style";
 
 type Toast = {
@@ -23,16 +16,6 @@ type Toast = {
   variant: MessageVariant;
   message: string;
 };
-
-type ToastContextValue = {
-  show: (variant: MessageVariant, message: string, durationMs?: number) => void;
-  success: (message: string, durationMs?: number) => void;
-  error: (message: string, durationMs?: number) => void;
-  info: (message: string, durationMs?: number) => void;
-  warning: (message: string, durationMs?: number) => void;
-};
-
-const ToastContext = createContext<ToastContextValue | null>(null);
 
 const ICONS: Record<MessageVariant, typeof Info> = {
   error: AlertCircle,
@@ -106,10 +89,3 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useToast(): ToastContextValue {
-  const ctx = useContext(ToastContext);
-  if (!ctx) {
-    throw new Error("useToast debe usarse dentro de <ToastProvider>");
-  }
-  return ctx;
-}

@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 
 import Message from "../../components/Message";
 import { TaskListSkeleton } from "../../components/Skeleton";
-import { useToast } from "../../components/Toast";
+import { useToast } from "../../components/Toast/context";
 import useAuthenticated from "../../hooks/useAuthenticated";
 import useTasks from "../../hooks/useTasks";
 import AddTask from "./AddTask";

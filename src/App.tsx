@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import { Auth } from "./modules/Auth";
@@ -6,7 +7,7 @@ import { Register } from "./modules/Register";
 import { Tasks } from "./modules/Tasks";
 import useAuthenticated from "./hooks/useAuthenticated";
 
-type GuardProps = { children: JSX.Element };
+type GuardProps = { children: ReactElement };
 
 function PrivateRoute({ children }: GuardProps) {
   const { userId, loading } = useAuthenticated();
