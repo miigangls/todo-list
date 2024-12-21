@@ -13,7 +13,7 @@ export default [
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: { ...globals.browser, ...globals.node },
       parser: tsparser,
       parserOptions: {
         ecmaVersion: 'latest',
